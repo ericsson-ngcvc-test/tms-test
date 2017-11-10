@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ericsson.geely-csp</groupId>
+	<artifactId>csp-test</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<cucumber.version>1.2.4</cucumber.version>
+		<cucumber-jvm-deps.version>1.0.5</cucumber-jvm-deps.version>
+		<rest-assured.version>3.0.2</rest-assured.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+
+	<dependencies>
+		<!-- cucumber -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-core -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-picocontainer -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-jvm-deps -->
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>${cucumber-jvm-deps.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>0.0.24</version>
+		</dependency>
+
+		<!-- rest-assured -->
+		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>xml-path</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>spring-mock-mvc</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- junit -->
+		<!-- https://mvnrepository.com/artifact/pl.pragmatists/JUnitParams -->
+		<dependency>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- logs -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+
+		 <!--MQTT-->
+		<!--<dependency>-->
+		<!--<groupId>org.eclipse.paho</groupId>-->
+		<!--<artifactId>org.eclipse.paho.client.mqttv3</artifactId>-->
+		<!--<version>1.1.0</version>-->
+		<!--</dependency>-->
+
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/com.doodeec.utils/serverCommunicator &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>com.doodeec.utils</groupId>-->
+			<!--<artifactId>serverCommunicator</artifactId>-->
+			<!--<version>1.3.6</version>-->
+		<!--</dependency>-->
+
+
+		<!-- ASN.1 -->
+		<dependency>
+			<groupId>com.ericsson.csp</groupId>
+			<artifactId>dispatcher-asn1-api</artifactId>
+			<version>1.3.8.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/dispatcher-asn1-api-1.3.8.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.sep.dispatcher.api</groupId>
+			<artifactId>transformer</artifactId>
+			<version>3.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/transformer-3.0.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.objsys</groupId>
+			<artifactId>asn1rtju</artifactId>
+			<version>7.0.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/asn1rtju-7.0.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.csp</groupId>
+			<artifactId>tsc-common</artifactId>
+			<version>0.35.0-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/tsc-common-0.35.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ericsson.csp.tsc</groupId>
+			<artifactId>csp-vds</artifactId>
+			<version>1.3.8.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/csp-vds-1.3.8.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/commons-configuration-1.10.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.24</version>
+		</dependency>
+
+		<!--Database-->
+		<!-- https://mvnrepository.com/artifact/com.datastax.cassandra/cassandra-driver-core -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.datastax.cassandra/cassandra-driver-mapping -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-mapping</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.datastax.cassandra/cassandra-driver-extras -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-extras</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>16.0.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core -->
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+			<version>3.1.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-buffer -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-buffer</artifactId>
+			<version>4.0.37.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-codec -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-codec</artifactId>
+			<version>4.0.37.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-common -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-common</artifactId>
+			<version>4.0.37.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-transport -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-transport</artifactId>
+			<version>4.0.37.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-handler -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-handler</artifactId>
+			<version>4.0.37.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<!--<dependency>-->
+			<!--<groupId>org.postgresql</groupId>-->
+			<!--<artifactId>postgresql</artifactId>-->
+			<!--<version>42.1.4</version>-->
+		<!--</dependency>-->
+		<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.1.4</version>
+		<!--<scope>system</scope>-->
+		<!--<systemPath>${project.basedir}/lib/postgresql-42.1.4.jar</systemPath>-->
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.xerial.snappy/snappy-java -->
+		<dependency>
+			<groupId>org.xerial.snappy</groupId>
+			<artifactId>snappy-java</artifactId>
+			<version>1.1.2.6</version>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>io.netty</groupId>-->
+			<!--<artifactId>netty-all</artifactId>-->
+			<!--<version>4.1.4.Final</version>-->
+			<!--<scope>test</scope>-->
+		<!--</dependency>-->
+	</dependencies>
+
+
+
+
+	<!--<build> -->
+	<!--<plugins> -->
+	<!--<plugin> -->
+	<!--<groupId>org.springframework.boot</groupId> -->
+	<!--<artifactId>spring-boot-maven-plugin</artifactId> -->
+	<!--</plugin> -->
+
+	<!--&lt;!&ndash;打包的时候不运行test&ndash;&gt; -->
+	<!--<plugin> -->
+	<!--<groupId>org.apache.maven.plugins</groupId> -->
+	<!--<artifactId>maven-surefire-plugin</artifactId> -->
+	<!--<version>2.11</version> -->
+	<!--<configuration> -->
+	<!--<skipTests>true</skipTests> -->
+	<!--</configuration> -->
+	<!--</plugin> -->
+
+	<!--&lt;!&ndash; 依赖包放到指定文件夹 &ndash;&gt; -->
+	<!--<plugin> -->
+	<!--<groupId>org.apache.maven.plugins</groupId> -->
+	<!--<artifactId>maven-dependency-plugin</artifactId> -->
+	<!--<version>2.10</version> -->
+	<!--<executions> -->
+	<!--<execution> -->
+	<!--<id>copy-dependencies</id> -->
+	<!--<phase>package</phase> -->
+	<!--<goals> -->
+	<!--<goal>copy-dependencies</goal> -->
+	<!--</goals> -->
+	<!--<configuration> -->
+	<!--<outputDirectory>${project.build.directory}/libs</outputDirectory> -->
+	<!--<overWriteReleases>false</overWriteReleases> -->
+	<!--<overWriteSnapshots>false</overWriteSnapshots> -->
+	<!--<overWriteIfNewer>true</overWriteIfNewer> -->
+	<!--</configuration> -->
+	<!--</execution> -->
+	<!--</executions> -->
+	<!--</plugin> -->
+	<!--</plugins> -->
+<!-- 	 <resources> -->
+<!--       <resource> -->
+<!--         <targetPath>lib/</targetPath> -->
+<!--         <directory>lib/</directory> -->
+<!--         <includes> -->
+<!--           <include>**/my-jar.jar</include> -->
+<!--         </includes> -->
+<!--       </resource> -->
+<!--     </resources> -->
+	<!--</build> -->
+
+
+</project>
