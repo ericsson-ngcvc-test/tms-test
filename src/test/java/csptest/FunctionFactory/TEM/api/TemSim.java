@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.jayway.restassured.response.Response;
 import csptest.FunctionFactory.TEM.messages.*;
 import csptest.FunctionFactory.common.Helper;
+import csptest.FunctionFactory.common.http.httpapi;
 import csptest.FunctionFactory.common.mqtt.org.eclipse.paho.client.mqttv3.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import csptest.FunctionFactory.common.mqtt.*;
+
+import java.net.URLEncoder;
 
 public class TemSim{
     static final Logger logs = LoggerFactory.getLogger(TemSim.class);
@@ -15,12 +18,13 @@ public class TemSim{
     Helper help = new Helper();
     Response result;
     Response sub_result;
+    httpapi hapi = new httpapi();
 
     private String broker_ip = help.getConfig("mqtt","MQTT_BROKER_IP");
     private String str_broker_port = help.getConfig("mqtt","MQTT_BROKER_PORT");
     private int broker_port = Integer.parseInt(str_broker_port);
     private boolean ssl = false;
-    private String clinetId = help.getConfig("mqtt","MQTT_CLIENTID");
+    private String clinetId = help.getConfig("tem","TEM_CLIENTID");
     private boolean cleanSession = true;
 
     private String sub_topic = help.getConfig("mqtt","SUB_TOPIC");
@@ -29,9 +33,9 @@ public class TemSim{
     public TemSim() throws MqttException {
     }
     
-    MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
-            false,null,null,
-            null,null,null);
+//    MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
+//            false,null,null,
+//            null,null,null);
 
 
 
@@ -50,7 +54,7 @@ public class TemSim{
 //            MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
 //                    false,null,null,
 //                    null,null,null);
-            mqttClient.subscribe(sub_topic, qos);
+//            mqttClient.subscribe(sub_topic, qos);
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -64,7 +68,7 @@ public class TemSim{
 //            MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
 //                    false,null,null,
 //                    null,null,null);
-            mqttClient.disconnect();
+//            mqttClient.disconnect();
         }catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -84,6 +88,10 @@ public class TemSim{
 
     }
 
+    /*
+    mqttclient, not finish
+    use tem-simulator
+     */
     public Response UplinkMessage(String serviceid){
         try {
 //            MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
@@ -100,7 +108,7 @@ public class TemSim{
            
             if (playload != null){
                 try {
-                	mqttClient.publish(serviceid, 1, playload.getBytes());
+//                	mqttClient.publish(serviceid, 1, playload.getBytes());
                 } catch (Throwable e) {
                     e.printStackTrace();
                     logs.info("Unable to publish to broker server: " + e.toString());
@@ -114,6 +122,10 @@ public class TemSim{
         return result;
     }
 
+    /*
+    mqttclient, not finish
+    use tem-simulator
+     */
     public void UplinkMessage(String topic, String eventid) {
         try {
 //            MqttClient mqttClient = new MqttClient(broker_ip,broker_port,ssl,clinetId,true,
@@ -140,7 +152,7 @@ public class TemSim{
 
             if (playload != null){
                 try {
-                    mqttClient.publish(serviceid, qos, playload.getBytes());
+//                    mqttClient.publish(serviceid, qos, playload.getBytes());
                 } catch (Throwable e) {
                     e.printStackTrace();
                     logs.info("Unable to publish to broker server: " + e.toString());
@@ -152,4 +164,40 @@ public class TemSim{
             e.printStackTrace();
         }
     }
+
+    public Response up_by_sim(String serviceid){
+        logs.info("vehicle start UPLINK " + serviceid);
+        String playload = "";
+        String content = "";
+        String utf8content = "";
+        TEM_BODY body = null;
+        String ip = help.getConfig("tem","TEM_IP");
+        String address = help.getConfig("tem","TEM_ADD");
+        String path = ip + address;
+
+        if (serviceid.equals("rvs")){
+            RVS jbody = new RVS(clinetId);
+            playload = jbody.getContent();
+            body = new TEM_BODY(clinetId,playload,serviceid);
+            content = body.getContent();
+            logs.info("body data : " + content);
+        }
+        else if (serviceid.equals("jou")){
+            JOU jbody = new JOU();
+            playload = jbody.getContent();
+            body = new TEM_BODY(clinetId,playload,serviceid);
+            content = body.getContent();
+            logs.info("body data : " + content);
+
+//            utf8content = URLEncoder.encode(content);
+//            logs.info("utf8 body : " + utf8content);
+        }
+
+        result = hapi.tem_send_message(path,content);
+
+
+        return result;
+    }
+
+
 }

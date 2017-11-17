@@ -18,7 +18,6 @@ public class TCStep {
     static final Logger logs = LoggerFactory.getLogger(TCStep.class);
 
     AppBackend app = new AppBackend();
-    dbsample db = new dbsample();
     static String tc_token = "";
 
     Response result;
@@ -27,12 +26,12 @@ public class TCStep {
 
     @Given("^I login the mobile app$")
     public void login() throws IOException, InterruptedException{
-        //logs.info("start login step");
+        logs.info("start login step");
         Login_result = app.login();
         tc_token = Login_result.jsonPath().getString("tcToken");
-        //logs.info("token = "+tc_token);
-
         assertEquals(200,Login_result.statusCode());
+
+        assertTrue(true);     //fake step
         }
 
     @When("^I tap \"(.*?)\" button$")
@@ -45,6 +44,27 @@ public class TCStep {
 //            DL_result = app.RemoteControl(tc_token);
 //            assertEquals(200, DL_result.statusCode());
 //        }
+        else if (service.equals("Trips page")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("one trip")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("Cliamte start")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("Cliamte stop")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("door open")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("door close")) {
+            assertTrue(true);       //fake step
+        }
+        else if (service.equals("remote active")) {
+            assertTrue(true);       //fake step
+        }
         else {
             result = app.RemoteControl(tc_token,service);
             assertEquals(200, result.statusCode());
@@ -65,26 +85,86 @@ public class TCStep {
             assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
             assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
         }
-        else if (service.equals("door open")) {
+        else if (service.equals("door unlock")) {
             assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
             assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
             assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
             assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
         }
+        else if (service.equals("door open")) {
+            assertTrue(true);   //fake step
+        }
+        else if (service.equals("door close")) {
+            assertTrue(true);   //fake step
+        }
+        else if (service.equals("Cliamte start")) {
+            assertTrue(true);    //fake step
+        }
+        else if (service.equals("Cliamte stop")) {
+            assertTrue(false);   //fake step
+        }
+        else if (service.equals("all journay logs")) {
+            assertTrue(true);   //fake step
+        }
+        else if (service.equals("trip detail")) {
+            assertTrue(true);   //fake step
+        }
     }
 
-    @When("^query protocol$")
-    public void queryprotocol() throws IOException, InterruptedException {
-        db.Qprotocol();
+    /**
+     * fake step
+     */
+    @When("^Vehicle's remote control activation status is off$")
+    public void RC_activate_off() throws IOException, InterruptedException {
+        assertTrue(true);
     }
 
-    @When("^update protocol$")
-    public void updateprotocol() throws IOException, InterruptedException {
-        db.updateprotocol();
+    /**
+     * fake step
+     */
+    @When("^Vehicle's remote control activation status turn to on$")
+    public void RC_activate_on() throws IOException, InterruptedException {
+        assertTrue(true);
     }
 
-    @When("^query cassandra$")
-    public void querycass() throws IOException, InterruptedException {
-        db.querycass();
+    /**
+     * fake step
+     */
+    @When("^Input last 8 charactoer of the vin$")
+    public void input_vin() throws IOException, InterruptedException {
+        assertTrue(true);
     }
+
+    /**
+     * fake step
+     */
+    @When("^Input vehicle onwer's phone number$")
+    public void input_own_phone() throws IOException, InterruptedException {
+        assertTrue(true);
+    }
+
+    /**
+     * fake step
+     */
+    @When("^new car will be showed on app$")
+    public void car_bind_result() throws IOException, InterruptedException {
+        assertTrue(false);
+    }
+
+    /**
+     * fake step
+     */
+    @When("^The switch of journey log is ([^\"]*)$")
+    public void joulog_switch(String oldstatus) throws IOException, InterruptedException {
+        assertTrue(true);
+    }
+
+    /**
+     * fake step
+     */
+    @Then("^I switch to ([^\"]*)$")
+    public void joulog_switch_operate(String newstatus) throws IOException, InterruptedException {
+        assertTrue(true);
+    }
+
 }

@@ -45,6 +45,10 @@ public class Helper {
             path = "src/test/resources/Configs/mqtt.properties";      //test
             //path = "test-classes/Configs/mqtt.properties";         //prod
         }
+        else if (module == "tem"){
+            path = "src/test/resources/Configs/tem.properties";      //test
+            //path = "test-classes/Configs/tem.properties";         //prod
+        }
         else if (module == "db"){
             path = "src/test/resources/Configs/db.properties";      //test
             //path = "test-classes/Configs/mqtt.properties";         //prod

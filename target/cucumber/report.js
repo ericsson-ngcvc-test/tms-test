@@ -6,34 +6,23 @@ formatter.feature({
   "id": "as-a-driver,-i-can-control-the-vehicle-via-mobile-app",
   "keyword": "Feature"
 });
-formatter.background({
-  "line": 3,
-  "name": "I have to login the mobile app first.",
-  "description": "",
-  "type": "background",
-  "keyword": "Background"
-});
-formatter.step({
-  "line": 4,
-  "name": "I login the mobile app",
-  "keyword": "Given "
-});
-formatter.match({
-  "location": "TCStep.login()"
-});
-formatter.result({
-  "duration": 2745527193,
-  "status": "passed"
-});
 formatter.scenario({
   "comments": [
+    {
+      "line": 3,
+      "value": "#  Background: I have to login the mobile app first."
+    },
+    {
+      "line": 4,
+      "value": "#    Given I login the mobile app"
+    },
     {
       "line": 6,
       "value": "#  Scenario: I can remote door lock via mobile app."
     },
     {
       "line": 7,
-      "value": "#    When Vehicle do \"remote status\" operation"
+      "value": "#    When \"remote status\" is triggered by vehicle"
     },
     {
       "line": 8,
@@ -46,73 +35,51 @@ formatter.scenario({
     {
       "line": 10,
       "value": "#    Then I can get latest \"door lock\" status"
+    },
+    {
+      "line": 12,
+      "value": "#  Scenario: I can remote door unlock via mobile app."
+    },
+    {
+      "line": 13,
+      "value": "#    When \"remote status\" is triggered by vehicle"
+    },
+    {
+      "line": 14,
+      "value": "#    When I tap \"door unlock\" button"
+    },
+    {
+      "line": 15,
+      "value": "#    When Vehicle do \"door unlock\" operation"
+    },
+    {
+      "line": 16,
+      "value": "#    Then I can get latest \"door unlock\" status"
     }
   ],
-  "line": 12,
-  "name": "I can remote door open via mobile app.",
+  "line": 18,
+  "name": "I can query journey logs while Vehile upload a trip",
   "description": "",
-  "id": "as-a-driver,-i-can-control-the-vehicle-via-mobile-app;i-can-remote-door-open-via-mobile-app.",
+  "id": "as-a-driver,-i-can-control-the-vehicle-via-mobile-app;i-can-query-journey-logs-while-vehile-upload-a-trip",
   "type": "scenario",
   "keyword": "Scenario"
 });
 formatter.step({
-  "comments": [
-    {
-      "line": 13,
-      "value": "#    When Vehicle do \"remote status\" operation"
-    }
-  ],
-  "line": 14,
-  "name": "I tap \"door open\" button",
+  "line": 19,
+  "name": "\"journey log\" is triggered by vehicle",
   "keyword": "When "
-});
-formatter.step({
-  "line": 15,
-  "name": "Vehicle do \"door open\" operation",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 16,
-  "name": "I can get latest \"door open\" status",
-  "keyword": "Then "
 });
 formatter.match({
   "arguments": [
     {
-      "val": "door open",
-      "offset": 7
-    }
-  ],
-  "location": "TCStep.AppSendMessage(String)"
-});
-formatter.result({
-  "duration": 210297927,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "door open",
-      "offset": 12
+      "val": "journey log",
+      "offset": 1
     }
   ],
   "location": "TEMStep.TemUploadMessage(String)"
 });
 formatter.result({
-  "duration": 101362569,
-  "status": "passed"
-});
-formatter.match({
-  "arguments": [
-    {
-      "val": "door open",
-      "offset": 18
-    }
-  ],
-  "location": "TCStep.GetRVS(String)"
-});
-formatter.result({
-  "duration": 10478904284,
+  "duration": 2298572363,
   "status": "passed"
 });
 });

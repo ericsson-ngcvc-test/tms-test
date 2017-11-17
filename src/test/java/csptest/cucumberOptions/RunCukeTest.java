@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		monochrome=true,
 		features = "src/test/resources/features/test",  //test
-		//features = "test-classes/features/test",          //prod
+//		features = "test-classes/features/test",          //prod
 		glue = "csptest.stepDefinitions",
 		plugin = {
 					"pretty",

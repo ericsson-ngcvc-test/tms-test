@@ -22,13 +22,33 @@ public class TEMStep {
 //    }
 
     @When("^Vehicle do \"(.*?)\" operation$")
-    public void TemUploadMessage(String service) throws IOException, InterruptedException{
+    public void TemRespMessage(String service) throws IOException, InterruptedException{
 //        if (service.equals("remote status")){
 //            result = tem.UplinkMessage("RVS");
 //        }
 //        else {
 //            tem.UplinkMessage();
 //        }
+    }
+
+    @When("^\"(.*?)\" is triggered by vehicle$")
+    public void TemUploadMessage(String service) throws IOException, InterruptedException{
+         if (service.equals("remote status")){
+//             result = tem.UplinkMessage("RVS");        //by mqttclient
+             result = tem.up_by_sim("rvs");        //by tem_simulator
+         }
+         else if (service.equals("Ecall event")) {
+             //fake step
+         }
+         else if (service.equals("Oncall event")) {
+            //fake step
+         }
+         else if (service.equals("Incall event")) {
+            //fake step
+         }
+         else if (service.equals("journey log")) {
+             result = tem.up_by_sim("jou");
+         }
     }
 
 //    @After

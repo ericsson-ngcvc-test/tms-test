@@ -5,6 +5,7 @@ import static com.jayway.restassured.RestAssured.given;
 
 import csptest.FunctionFactory.TC.messages.*;
 import csptest.FunctionFactory.common.*;
+import csptest.FunctionFactory.common.http.*;
 import csptest.tools.GlobalValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class AppBackend {
     static final Logger logs = LoggerFactory.getLogger(AppBackend.class);
     Helper help = new Helper();
+    httpapi hapi = new httpapi();
 
     Response result;
     String userid = GlobalValue.APP_USERID;
@@ -33,7 +35,7 @@ public class AppBackend {
         String content = body.getContent();
         //logs.info(content);
 
-        result = tc_send_message("POST",null,path,null,content);
+        result = hapi.tc_send_message("POST",null,path,null,content);
         //result.prettyPrint();
         return result;
     }
@@ -49,7 +51,7 @@ public class AppBackend {
             Thread.sleep(1000);
         }
 
-        result = tc_send_message("GET",token,path,param,null);
+        result = hapi.tc_send_message("GET",token,path,param,null);
 //        result.prettyPrint();
         logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
         logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
@@ -70,35 +72,38 @@ public class AppBackend {
             content = body.getContent();
 //            logs.info(content);
         }
-        else if (service.equals("door open")){
+        else if (service.equals("door unlock")){
             App_RDU body = new App_RDU(userid);
             content = body.getContent();
 //            logs.info(content);
         }
 
-        result = tc_send_message("PUT",token,path,null,content);
+        result = hapi.tc_send_message("PUT",token,path,null,content);
 //        result.prettyPrint();
 
         return result;
     }
 
 
-    public Response tc_send_message(String method,String token,String path,String param,Object body) {
-        if (method == "POST"){
-            result = given().header("Content-Type","application/json").
-                    body(body).post(path);
-        }
-        else if(method == "PUT"){
-            result = given().header("Content-Type","application/json").
-                    and().header("tcToken", token).
-                    body(body).put(path);
-        }
-        else if (method == "GET"){
-            result = given().header("Content-Type","application/json").
-                    and().header("tcToken", token).
-                    get(path + "?" + param);
-        }
+    /*
+    achieve by httpapi.tc_send_message
+     */
+//    public Response tc_send_message(String method,String token,String path,String param,Object body) {
+//        if (method == "POST"){
+//            result = given().header("Content-Type","application/json").
+//                    body(body).post(path);
+//        }
+//        else if(method == "PUT"){
+//            result = given().header("Content-Type","application/json").
+//                    and().header("tcToken", token).
+//                    body(body).put(path);
+//        }
+//        else if (method == "GET"){
+//            result = given().header("Content-Type","application/json").
+//                    and().header("tcToken", token).
+//                    get(path + "?" + param);
+//        }
+//        return result;
+//    }
 
-        return result;
-    }
 }
