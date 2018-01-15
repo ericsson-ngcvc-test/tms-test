@@ -34,7 +34,7 @@ public class TCStep {
         assertTrue(true);     //fake step
         }
 
-    @When("^I tap \"(.*?)\" button$")
+    @When("^I press \"(.*?)\" button in mobile app$")
     public void AppSendMessage(String service) throws IOException,InterruptedException {
         if (service.equals("remote status")) {
             RVS_result = app.QueryRVS(tc_token);
