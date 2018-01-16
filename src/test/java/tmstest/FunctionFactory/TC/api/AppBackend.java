@@ -40,7 +40,7 @@ public class AppBackend {
         return result;
     }
 
-    public Response QueryRVS(String token) throws InterruptedException {
+    public Response QueryTelematry(String token) throws InterruptedException {
         add = help.getConfig("tc","RVS_ADD");
         String path = url + add + vin;
         String param = "userId=" + userid + "&target=basic,more&latest=False&source=tc";
@@ -53,10 +53,10 @@ public class AppBackend {
 
         result = hapi.tc_send_message("GET",token,path,param,null);
 //        result.prettyPrint();
-        logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
-        logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
-        logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
-        logs.info(result.jsonPath().getString("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
+//        logs.info(result.jsonPath().getString("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
+//        logs.info(result.jsonPath().getString("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
+//        logs.info(result.jsonPath().getString("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
+//        logs.info(result.jsonPath().getString("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
 
         return result;
     }
@@ -67,13 +67,13 @@ public class AppBackend {
         String path = url + add + vin;
         String content = "";
 
-        if (service.equals("door lock")){
-            App_RDL body = new App_RDL(userid);
+        if (service.equals("RDL")){
+            App_RDL_RDU body = new App_RDL_RDU("start","RDL",userid);
             content = body.getContent();
 //            logs.info(content);
         }
-        else if (service.equals("door unlock")){
-            App_RDU body = new App_RDU(userid);
+        else if (service.equals("RDU")){
+            App_RDL_RDU body = new App_RDL_RDU(null,"RDU",userid);
             content = body.getContent();
 //            logs.info(content);
         }

@@ -23,6 +23,8 @@ public class TCStep {
     Response result;
     Response Login_result;
     Response RVS_result;
+    Response RDL_result;
+    Response RDU_result;
 
     @Given("^I login the mobile app$")
     public void login() throws IOException, InterruptedException{
@@ -37,13 +39,17 @@ public class TCStep {
     @When("^I press \"(.*?)\" button in mobile app$")
     public void AppSendMessage(String service) throws IOException,InterruptedException {
         if (service.equals("remote status")) {
-            RVS_result = app.QueryRVS(tc_token);
+            RVS_result = app.QueryTelematry(tc_token);
             assertEquals(200,RVS_result.statusCode());
         }
-//        else if (service.equals("door lock")) {
-//            DL_result = app.RemoteControl(tc_token);
-//            assertEquals(200, DL_result.statusCode());
-//        }
+        else if (service.equals("door lock")) {
+            RDL_result = app.RemoteControl(tc_token,"RDL");
+            assertEquals(200, RDL_result.statusCode());
+        }
+        else if (service.equals("door unlock")) {
+            RDL_result = app.RemoteControl(tc_token,"RDU");
+            assertEquals(200, RDL_result.statusCode());
+        }
         else if (service.equals("Trips page")) {
             assertTrue(true);       //fake step
         }
@@ -74,22 +80,25 @@ public class TCStep {
 
     @Then("^I can get latest \"(.*?)\" status$")
     public void GetRVS(String service) throws IOException, InterruptedException {
-        result = app.QueryRVS(tc_token);
+        result = app.QueryTelematry(tc_token);
 
-        if (service.equals("remote status")) {
-            assertEquals(GlobalValue.VIN,RVS_result.jsonPath().getString("result.vin"));
+        if (service.equals("remote vehicle")) {
+            logs.info(RVS_result.jsonPath().getString("data.result.serviceId"));
+            logs.info(RVS_result.jsonPath().getString("data.result.vin"));
+            assertEquals("RVS",RVS_result.jsonPath().getString("data.result.serviceId"));
+            assertEquals(GlobalValue.VIN,RVS_result.jsonPath().getString("data.result.vin"));
         }
         else if (service.equals("door lock")) {
-            assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
-            assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
-            assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
-            assertEquals(1, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
+            assertEquals(1, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
+            assertEquals(1, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
+            assertEquals(1, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
+            assertEquals(1, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
         }
         else if (service.equals("door unlock")) {
-            assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
-            assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
-            assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
-            assertEquals(0, result.jsonPath().getInt("vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
+            assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriver"));
+            assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassenger"));
+            assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
+            assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
         }
         else if (service.equals("door open")) {
             assertTrue(true);   //fake step
