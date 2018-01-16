@@ -68,12 +68,24 @@ public class AppBackend {
         String content = "";
 
         if (service.equals("RDL")){
-            App_RDL_RDU body = new App_RDL_RDU("start","RDL",userid);
+            App_RDL_RDU body = new App_RDL_RDU(command,"RDL",userid);
             content = body.getContent();
 //            logs.info(content);
         }
         else if (service.equals("RDU")){
-            App_RDL_RDU body = new App_RDL_RDU(null,"RDU",userid);
+            App_RDL_RDU body = new App_RDL_RDU(command,"RDU",userid);
+            content = body.getContent();
+//            logs.info(content);
+        }else if (service.equals("RHL")){
+            App_RHL body = null;
+            switch(command){
+                case "horn":
+                    body = new App_RHL(userid,"start","horn");
+                case "flash":
+                    body = new App_RHL(userid,"start","light-flash");
+                case "hornnflash":
+                    body = new App_RHL(userid,"start","horn-light-flash");
+            }
             content = body.getContent();
 //            logs.info(content);
         }else if (service.equals("RES")){

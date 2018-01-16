@@ -1,10 +1,10 @@
 package tmstest.FunctionFactory.TC.messages;
 
-public class App_RCE {
+public class App_RHL {
 
     private String body;
 
-    public App_RCE(String userid, String command) {
+    public App_RHL(String userid, String command, String value) {
 
         if ( command.equalsIgnoreCase("start")){
             command="start";
@@ -16,15 +16,15 @@ public class App_RCE {
 
         this.body = "{\n" +
                 "  \"userId\": \"" + userid + "\",\n" +
-                "  \"serviceId\": \"RCE\",\n" +
+                "  \"serviceId\": \"RHL\",\n" +
                 "  \"timestamp\": " + System.currentTimeMillis() + ",\n" +
                 "  \"creator\": \"tc\",\n" +
                 "  \"command\": \"" + command + "\",\n" +
                 "  \"latest\": false,\n" +
                 "  \"serviceParameters\": [\n" +
                 "    {\n" +
-                "      \"key\": \"rce\",\n" +
-                "      \"value\": \"15\"\n" +
+                "      \"key\": \"rhl\",\n" +
+                "      \"value\": \"" + value + "\"\n" +
                 "    }\n" +
                 "  ],\n" +
                 "  \"operationScheduling\": {\n" +
