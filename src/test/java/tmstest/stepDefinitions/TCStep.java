@@ -43,15 +43,19 @@ public class TCStep {
             assertEquals(200,RVS_result.statusCode());
         }
         else if (service.equals("door lock")) {
-            RDL_result = app.RemoteControl(tc_token,"RDL");
+            result = app.RemoteControl(tc_token,"RDL",null);
             assertEquals(200, RDL_result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
         else if (service.equals("door unlock")) {
-            RDL_result = app.RemoteControl(tc_token,"RDU");
+            result = app.RemoteControl(tc_token,"RDU",null);
             assertEquals(200, RDL_result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
-        else if (service.equals("Trips page")) {
-            assertTrue(true);       //fake step
+        else if (service.equals("start engine")) {
+            result = app.RemoteControl(tc_token,"RES","start");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
         else if (service.equals("one trip")) {
             assertTrue(true);       //fake step
@@ -72,7 +76,7 @@ public class TCStep {
             assertTrue(true);       //fake step
         }
         else {
-            result = app.RemoteControl(tc_token,service);
+            result = app.RemoteControl(tc_token,service,"");
             assertEquals(200, result.statusCode());
         }
 
