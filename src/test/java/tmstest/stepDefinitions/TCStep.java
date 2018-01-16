@@ -57,14 +57,20 @@ public class TCStep {
             assertEquals(200, result.statusCode());
             assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
-        else if (service.equals("one trip")) {
-            assertTrue(true);       //fake step
+        else if (service.equals("stop engine")) {
+            result = app.RemoteControl(tc_token,"RES","stop");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
-        else if (service.equals("Cliamte start")) {
-            assertTrue(true);       //fake step
+        else if (service.equals("close windows")) {
+            result = app.RemoteControl(tc_token,"RWS","stop");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
-        else if (service.equals("Cliamte stop")) {
-            assertTrue(true);       //fake step
+        else if (service.equals("start air condition")) {
+            result = app.RemoteControl(tc_token,"RCE","start");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
         }
         else if (service.equals("door open")) {
             assertTrue(true);       //fake step
@@ -104,14 +110,21 @@ public class TCStep {
             assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusDriverRear"));
             assertEquals(0, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.drivingSafetyStatus.doorLockStatusPassengerRear"));
         }
-        else if (service.equals("door open")) {
-            assertTrue(true);   //fake step
+        else if (service.equals("engine started")) {
+            assertEquals(0, result.jsonPath().getInt("data.result.serviceResult.operationResult"));
+            assertEquals("ENGINE_RUNNING",result.jsonPath().getString("data.vehicleStatus.basicVehicleStatus.engineStatus"));
         }
-        else if (service.equals("door close")) {
-            assertTrue(true);   //fake step
+        else if (service.equals("engine stopped")) {
+            assertEquals(0, result.jsonPath().getInt("data.result.serviceResult.operationResult"));
+            assertEquals("ENGINE_OFF",result.jsonPath().getString("data.vehicleStatus.basicVehicleStatus.engineStatus"));
         }
-        else if (service.equals("Cliamte start")) {
-            assertTrue(true);    //fake step
+        else if (service.equals("windows closed")) {
+            assertEquals(0, result.jsonPath().getInt("data.result.serviceResult.operationResult"));
+            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusDriver"));
+            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusPassenger"));
+            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusDriverRear"));
+            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusPassengerRear"));
+            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.sunroofOpenStatus"));
         }
         else if (service.equals("Cliamte stop")) {
             assertTrue(false);   //fake step

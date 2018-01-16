@@ -24,5 +24,5 @@ Feature: As a driver, I can do remote control via mobile app
     Then I can get latest "windows closed" status
 
   Scenario: I can remote door lock via mobile app
-    When I press "start air" button in mobile app
+    When I press "start air condition" button in mobile app
     Then I can get latest "engine started" status

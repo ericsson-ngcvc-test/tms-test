@@ -80,6 +80,14 @@ public class AppBackend {
             App_RES body = new App_RES(userid,command);
             content = body.getContent();
 //            logs.info(content);
+        }else if (service.equals("RWS")){
+            App_RWS body = new App_RWS(userid,command);
+            content = body.getContent();
+//            logs.info(content);
+        }else if (service.equals("RCE")){
+            App_RCE body = new App_RCE(userid,command);
+            content = body.getContent();
+//            logs.info(content);
         }
 
         result = hapi.tc_send_message("PUT",token,path,null,content);
