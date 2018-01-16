@@ -61,7 +61,7 @@ public class AppBackend {
         return result;
     }
 
-    public Response RemoteControl(String token,String service) {
+    public Response RemoteControl(String token,String service,String command) {
         logs.info("start to " + service);
         add = help.getConfig("tc","RC_ADD");
         String path = url + add + vin;
@@ -74,6 +74,10 @@ public class AppBackend {
         }
         else if (service.equals("RDU")){
             App_RDL_RDU body = new App_RDL_RDU(null,"RDU",userid);
+            content = body.getContent();
+//            logs.info(content);
+        }else if (service.equals("RES")){
+            App_RES body = new App_RES(userid,command);
             content = body.getContent();
 //            logs.info(content);
         }
