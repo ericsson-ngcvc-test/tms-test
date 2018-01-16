@@ -45,32 +45,32 @@ public class TCStep {
         else if (service.equals("door lock")) {
             result = app.RemoteControl(tc_token,"RDL",null);
             assertEquals(200, RDL_result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("door unlock")) {
             result = app.RemoteControl(tc_token,"RDU",null);
             assertEquals(200, RDL_result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("start engine")) {
             result = app.RemoteControl(tc_token,"RES","start");
             assertEquals(200, result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("stop engine")) {
             result = app.RemoteControl(tc_token,"RES","stop");
             assertEquals(200, result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("close windows")) {
             result = app.RemoteControl(tc_token,"RWS","stop");
             assertEquals(200, result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("start air condition")) {
             result = app.RemoteControl(tc_token,"RCE","start");
             assertEquals(200, result.statusCode());
-            assertEquals(1,result.jsonPath().getInt("serviceResult.operationResult"));
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("door open")) {
             assertTrue(true);       //fake step
@@ -124,7 +124,7 @@ public class TCStep {
             assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusPassenger"));
             assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusDriverRear"));
             assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.winStatusPassengerRear"));
-            assertEquals(2, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.sunroofOpenStatus"));
+            assertEquals(1, result.jsonPath().getInt("data.vehicleStatus.additionalVehicleStatus.climateStatus.sunroofOpenStatus"));
         }
         else if (service.equals("Cliamte stop")) {
             assertTrue(false);   //fake step
