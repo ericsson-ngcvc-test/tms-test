@@ -43,13 +43,28 @@ public class TCStep {
             assertEquals(200,RVS_result.statusCode());
         }
         else if (service.equals("door lock")) {
-            result = app.RemoteControl(tc_token,"RDL",null);
-            assertEquals(200, RDL_result.statusCode());
+            result = app.RemoteControl(tc_token,"RDL","start");
+            assertEquals(200, result.statusCode());
             assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("door unlock")) {
             result = app.RemoteControl(tc_token,"RDU",null);
-            assertEquals(200, RDL_result.statusCode());
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
+        }
+        else if (service.equals("remote horn")) {
+            result = app.RemoteControl(tc_token,"RHL","horn");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
+        }
+        else if (service.equals("remote flash")) {
+            result = app.RemoteControl(tc_token,"RHL","flash");
+            assertEquals(200, result.statusCode());
+            assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
+        }
+        else if (service.equals("remote horn & flash")) {
+            result = app.RemoteControl(tc_token,"RHL","hornnflash");
+            assertEquals(200, result.statusCode());
             assertEquals(1,result.jsonPath().getInt("data.serviceResult.operationResult"));
         }
         else if (service.equals("start engine")) {

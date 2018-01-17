@@ -11,6 +11,14 @@ Feature: As a driver, I can do remote control via mobile app
     When I press "door lock" button in mobile app
     Then I can get latest "door lock" status
 
+  Scenario: I can remote honk & flash via mobile app
+    When I press "remote horn" button in mobile app
+    Then The vehicle excute "remote horn & flash" command success
+    When I press "remote flash" button in mobile app
+    Then The vehicle excute "remote horn & flash" command success
+    When I press "remote horn & flash" button in mobile app
+    Then The vehicle excute "remote horn & flash" command success
+
   Scenario: I can remote start engine via mobile app
     When I press "start engine" button in mobile app
     Then I can get latest "engine started" status

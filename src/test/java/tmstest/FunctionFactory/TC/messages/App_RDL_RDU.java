@@ -19,7 +19,7 @@ public class App_RDL_RDU {
                 "    \"serviceId\":\"" + serviceId + "\",\n" +
                 "    \"serviceParameters\":[],\n" +
                 "    \"sessionId\":\"\",\n" +
-                "    \"timestamp\":\"1512529357937\",\n" +
+                "    \"timestamp\":\"" + System.currentTimeMillis() + "\",\n" +
                 "    \"userId\":\"" + userid + "\"\n" +
                 "}";
     }
