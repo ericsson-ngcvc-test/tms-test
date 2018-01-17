@@ -4,3 +4,4 @@ Feature: test db
     When query protocol
     When update protocol
     When query cassandra
+    Then hahahahah
