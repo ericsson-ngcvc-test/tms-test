@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: tmstest.cucumberOptions.RunCukeTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 28.556 sec <<< FAILURE!
+Then I can get latest "engine started" status(Scenario: I can remote start air condition via mobile app)  Time elapsed: 0.004 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<ENGINE_[RUNNING]> but was:<ENGINE_[OFF]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at tmstest.stepDefinitions.TCStep.GetRVS(TCStep.java:115)
+	at ✽.Then I can get latest "engine started" status(RemoteControl.feature:28)
+
+Scenario: I can remote start air condition via mobile app  Time elapsed: 0.004 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<ENGINE_[RUNNING]> but was:<ENGINE_[OFF]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at tmstest.stepDefinitions.TCStep.GetRVS(TCStep.java:115)
+	at ✽.Then I can get latest "engine started" status(RemoteControl.feature:28)
+
