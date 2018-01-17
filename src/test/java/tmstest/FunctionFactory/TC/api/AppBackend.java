@@ -81,13 +81,16 @@ public class AppBackend {
             switch(command){
                 case "horn":
                     body = new App_RHL(userid,"start","horn");
+                    break;
                 case "flash":
                     body = new App_RHL(userid,"start","light-flash");
+                    break;
                 case "hornnflash":
                     body = new App_RHL(userid,"start","horn-light-flash");
+                    break;
             }
             content = body.getContent();
-//            logs.info(content);
+            logs.info(content);
         }else if (service.equals("RES")){
             App_RES body = new App_RES(userid,command);
             content = body.getContent();
